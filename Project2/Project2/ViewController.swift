@@ -20,6 +20,11 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(showScore))
+        
+        
+        
         //        countries.append("estonia")
         //        countries.append("france")  yerine
         countries += ["estonia", "france", "germany", "ireland", "italy", "monaco", "nigeria", "poland", "russia", "spain", "uk", "us"]
@@ -66,13 +71,11 @@ class ViewController: UIViewController {
             title = "Wrong"
             score -= 1
         }
-        if questionIndex < howMantgame - 1 {
+        if questionIndex < howMantgame - 8 {
             questionIndex += 1
            
-            
-            let ac = UIAlertController(title: title, message: "Your score is \(score).", preferredStyle: .alert)
-            ac.addAction(UIAlertAction(title: "Continue", style: .default, handler: askQuestion))
-            present(ac, animated: true)
+            showScore()
+
         }else {
             print("buraya girdi")
             
@@ -85,6 +88,13 @@ class ViewController: UIViewController {
         
         
        
+    }
+    @objc func showScore() {
+        let ac = UIAlertController(title: title, message: "Your score is \(score).", preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "Continue", style: .default, handler: askQuestion))
+        present(ac, animated: true)
+        
+        
     }
     
     
